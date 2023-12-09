@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://wwww.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+    <header th:replace="~{layout/layout :: header}"></header>
+    <main class="d-flex flex-column align-items-center mt-5">
+        <h2 id="home-title">Bienvenido al sistema de, facturación y administración de clientes.</h2>
+        <a class="btn btn-success btn-xs mt-5" th:href="@{/listar}">
+            Administrar clientes
+        </a>
+    </main>
+</body>
+</html>

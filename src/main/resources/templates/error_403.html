@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+  <header th:replace="~{layout/layout :: header}"></header>
+
+  <main class="container py-4">
+    <div class="card border-danger mb-3" style="max-width: 18rem;">
+      <div class="card-header">¡Acceso denegado!</div>
+      <div class="card-body text-danger">
+        <h5 class="card-title">Acceso denegado al recurso.</h5>
+        <p class="card-text">Lo sentimos <span sec:authentication="name"></span>, tu Role es: <span sec:authentication="principal.getAuthorities()"></span> y no tienes permiso para acceder a este recurso.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

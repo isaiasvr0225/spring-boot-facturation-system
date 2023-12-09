@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head th:fragment="head">
+    <meta charset="UTF-8" />
+    <title th:text="${titulo}"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+  </head>
+  <body>
+    <header th:fragment="header">
+      <nav
+      class="navbar bg-dark border-bottom border-bottom-dark"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <a class="nav-link active text-light" aria-current="page" th:href="@{/}">Inicio</a>
+        <a class="navbar-brand" th:href="@{/}">Facturation system</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/listar}">Clientes</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          <ul class="navbar-nav navbar-right">
+            <li sec:authorize="!isAuthenticated()"><a class="btn btn-outline-primary" th:href="@{/login}">Sign In</a> </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <p class="alert alert-success" th:if="${success != null}" th:text="${success}"></p>
+    <p class="alert alert-danger" th:if="${error != null}" th:text="${error}"></p>
+    <p class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></p>
+    <p class="alert alert-info" th:if="${info != null}" th:text="${info}"></p>
+    </header>
+    <hr />
+    <footer class="d-flex flex-column align-items-center" th:fragment="footer">
+
+		<img style="width: 200px; height: 70px" th:src="@{/images/spring-logo.png}" alt="Spring logo" />
+
+        <p sec:authorize="isAuthenticated()">Usuario logueado: <span sec:authentication="name"></span> | Role: <span sec:authentication="principal.getAuthorities()"></span> </p>
+
+		<p>
+			Powered by <a href="https://projects.spring.io/spring-boot/">Spring
+				Boot</a> y <a href="http://www.thymeleaf.org">Thymeleaf</a>.
+		</p>
+		<p>
+			Este proyecto fue desarrollado en IDE IntelliJ IDEA, by Isaias Villarreal<br /> &copy; Company 2023,
+			Inc. Todos los derechos reservados. Términos de uso y privacidad.<br />
+		</p>
+
+      <script th:src="@{/js/jquery-3.7.0.min.js}"></script>
+      <script th:src="@{/js/bootstrap.js}"></script>
+      <script th:src="@{/js/jquery-ui.min.js}"></script>
+    </footer>
+  </body>
+</html>
